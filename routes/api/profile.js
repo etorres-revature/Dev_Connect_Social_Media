@@ -98,10 +98,9 @@ router.post(
 
       profile = new Profile(profileFields);
 
-      await Profile.save();
+      await profile.save();
 
       res.json(profile);
-
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");
