@@ -32,7 +32,7 @@ export default function (state = initialState, action) {
       };
     case REGISTER_FAIL:
     case AUTH_ERROR:
-      localStorage.removItem("token");
+      localStorage.removeItem("token");
       return {
         ...state,
         token: null,
