@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { register } from "../../actions/auth";
 import { setAlert } from "../../actions/alert";
 import PropTypes from "prop-types";
-import axios from "axios";
+
 
 const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
