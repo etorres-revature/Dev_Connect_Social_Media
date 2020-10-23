@@ -13,12 +13,12 @@ const User = require("../../models/User");
 //@access       Private
 router.get("/me", auth, async (req, res) => {
   try {
-    const profile = await (
-      await Profile.findOne({ user: req.user.id })
-    ).populated("user", ["name", "avatar"]);
+    const profile = await Profile.findOne({
+      user: req.user.id,
+    }).populate("user", ["name", "avatar"]);
 
     if (!profile) {
-      res
+      return res
         .status(400)
         .json({ msg: "There is no profile available for this user" });
     }
@@ -319,17 +319,16 @@ router.get("/github/:username", async (req, res) => {
         "githubClientID"
       )}&client_secret=${config.get("githubSecret")}`,
       method: "GET",
-      headers: {"user-agent": "node.js"}
+      headers: { "user-agent": "node.js" },
     };
     request(options, (err, response, body) => {
-        if(err) console.error(err);
+      if (err) console.error(err);
 
-        if(res.statusCode !== 200) {
-            return response.status(404).json({msg: "No GitHub profile found"})
-        }
+      if (res.statusCode !== 200) {
+        return response.status(404).json({ msg: "No GitHub profile found" });
+      }
 
-        res.json(JSON.parse(body));
-
+      res.json(JSON.parse(body));
     });
   } catch (err) {
     console.error(err.message);
