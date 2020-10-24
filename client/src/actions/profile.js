@@ -31,7 +31,7 @@ export const createProfile = (formData, history, edit = false) => async (
       },
     };
 
-    const res = await axios.post("/api/profile", formData, config);
+    const res = await axios.post("api/profile", formData, config);
 
     dispatch({
       type: GET_PROFILE,
@@ -66,7 +66,7 @@ export const addExperience = (formData, history) => async dispatch => {
       },
     };
 
-    const res = await axios.put("/api/profile/experience", formData, config);
+    const res = await axios.put("api/profile/experience", formData, config);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -99,7 +99,7 @@ export const addEducation = (formData, history) => async dispatch => {
       },
     };
 
-    const res = await axios.put("/api/profile/education", formData, config);
+    const res = await axios.put("api/profile/education", formData, config);
 
     dispatch({
       type: UPDATE_PROFILE,
